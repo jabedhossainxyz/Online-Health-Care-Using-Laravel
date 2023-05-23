@@ -31,7 +31,7 @@ Route::get('/update_doctor/{id}', [AdminController::class, 'updateDoctor']);
 Route::post('/edit_doctor/{id}', [AdminController::class, 'editDoctor']);
 
 Route::get('/doctors', [HomeController::class, 'doctorPage'])->name('show.doctor');
-Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('show.about-us');
+Route::get('/about-us', [HomeController::class, 'About_us'])->name('show.about-us');
 Route::get('/blogs', [HomeController::class, 'blog'])->name('show.blog');
 Route::get('/contact', [HomeController::class, 'contact'])->name('show.contact');
 Route::view('/chat', 'chat')->name('chat');
