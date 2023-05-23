@@ -37,3 +37,7 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('show.contact')
 Route::view('/chat', 'chat')->name('chat');
 Route::view('/protection', 'protection')->name('protection');
 Route::view('/pharmacy', 'pharmacy')->name('pharmacy');
+Route::view('/career', 'career')->name('career');
+Route::view('/team', 'team')->name('team');
+Route::view('/terms', 'terms')->name('terms');
+Route::view('/privacy', 'privacy')->name('privacy');

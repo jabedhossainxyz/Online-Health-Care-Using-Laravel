@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Terms & Conditions</title>
+    <title>Editorial Team in Our Company</title>
     <link rel="stylesheet" href="./assets/css/maicons.css">
 
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
@@ -20,12 +20,28 @@
 
         h1 {
             text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 28px;
         }
 
         p {
-            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .team-member {
+            margin-bottom: 20px;
+        }
+
+        .name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .position {
+            color: #666;
+        }
+
+        .bio {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -54,8 +70,38 @@
     </div> <!-- .topbar -->
     @include('user.navbar')
 </header>
-    <h1>Terms & Conditions</h1>
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+    <h1>Editorial Team in Our Company</h1>
+
+    <div class="team-member">
+        <p class="name">John Smith</p>
+        <p class="position">Editor-in-Chief</p>
+        <p class="bio">John Smith is an experienced editor with a passion for delivering high-quality content. With his
+            keen eye for detail and strong editorial skills, he leads our team in creating engaging and informative
+            content for our audience.</p>
+    </div>
+
+    <div class="team-member">
+        <p class="name">Emily Johnson</p>
+        <p class="position">Senior Editor</p>
+        <p class="bio">Emily Johnson is a talented editor who specializes in refining and polishing written materials.
+            Her expertise in grammar, syntax, and style ensures that our content is error-free and well-crafted.</p>
+    </div>
+
+    <div class="team-member">
+        <p class="name">Michael Davis</p>
+        <p class="position">Content Strategist</p>
+        <p class="bio">Michael Davis is a creative content strategist who excels at developing compelling content plans
+            and strategies. He collaborates with our team to ensure that our content aligns with our company's goals
+            and resonates with our target audience.</p>
+    </div>
+
+    <div class="team-member">
+        <p class="name">Sarah Thompson</p>
+        <p class="position">Copy Editor</p>
+        <p class="bio">Sarah Thompson is a meticulous copy editor who ensures the accuracy and consistency of our
+            written content. Her attention to detail and strong grammar skills guarantee that our content meets the
+            highest standards of quality.</p>
+    </div>
 
     <script src="./assets/js/jquery-3.5.1.min.js"></script>
 
