@@ -11,15 +11,14 @@
                     <div class="site-info">
                         <a href="#"><span class="mai-call text-primary"></span> +00 123 4455 6666</a>
                         <span class="divider">|</span>
-                        <a href="#"><span class="mai-mail text-primary"></span> mail@example.com</a>
+                        <a href="https://mail.google.com"><span class="mai-mail text-primary"></span> one-health@gmail.com</a>
                     </div>
                 </div>
                 <div class="col-sm-4 text-right text-sm">
                     <div class="social-mini-button">
-                        <a href="#"><span class="mai-logo-facebook-f"></span></a>
-                        <a href="#"><span class="mai-logo-twitter"></span></a>
-                        <a href="#"><span class="mai-logo-dribbble"></span></a>
-                        <a href="#"><span class="mai-logo-instagram"></span></a>
+                        <a href="https://wwww.facebook.com"><span class="mai-logo-facebook-f"></span></a>
+                        <a href="https://wwww.twitter.com"><span class="mai-logo-twitter"></span></a>
+                        <a href="https://wwww.instagram.com"><span class="mai-logo-instagram"></span></a>
                     </div>
                 </div>
             </div> <!-- .row -->
@@ -83,8 +82,8 @@
             </div>
             <div class="col-lg-8 wow fadeInRight">
                 <h1 class="font-weight-normal mb-3">Get easy access of all features using One Health Application</h1>
-                <a href="#"><img src="./assets/img/google_play.svg" alt=""></a>
-                <a href="#" class="ml-2"><img src="./assets/img/app_store.svg" alt=""></a>
+                <a href="https://play.google.com/"><img src="./assets/img/google_play.svg" alt=""></a>
+                <a href="https://www.apple.com/app-store/" class="ml-2"><img src="./assets/img/app_store.svg" alt=""></a>
             </div>
         </div>
     </div>
