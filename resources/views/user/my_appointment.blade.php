@@ -70,13 +70,13 @@
                     <a class="nav-link" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ url('about') }}">About Us</a>
+                    <a class="nav-link" href="{{ route('show.about-us') }}">About Us</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="{{ url('doctors') }}">Doctors</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ url('blog') }}">News</a>
+                    <a class="nav-link" href="{{ route('show.blog') }}">News</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('contact') }}">Contact</a>
@@ -108,10 +108,9 @@
         </div> <!-- .container -->
     </nav>
 </header>
-{{--Showing the table of appointment--}}
 <div align="center" style="padding: 70px;">
     <table>
-        <tr style="background-color: black;">
+        <tr style="background-color: grey;">
             <th style="padding: 10px; font-size: 20px; color: white;">Doctor</th>
             <th style="padding: 10px; font-size: 20px; color: white;">Name</th>
             <th style="padding: 10px; font-size: 20px; color: white;">Date</th>
@@ -121,7 +120,7 @@
         </tr>
 
         @foreach($appoint as $appoints)
-        <tr style="background-color: black;" align="center">
+        <tr style="background-color: grey;" align="center">
             <td style="padding: 10px; color: white;">{{ $appoints->doctor }}</td>
             <td style="padding: 10px; color: white;">{{ $appoints->name  }}</td>
             <td style="padding: 10px; color: white;">{{ $appoints->date }}</td>
