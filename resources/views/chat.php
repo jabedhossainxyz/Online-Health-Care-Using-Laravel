@@ -18,7 +18,6 @@
         <h1>Send Message to Doctors</h1>
 
         <form action="/send-message" method="POST">
-                @csrf
                 <label for="name">Your Name:</label>
                 <input type="text" name="name" id="name" required><br><br>
 

@@ -83,7 +83,7 @@
                         <div class="circle-shape bg-secondary text-white">
                             <span class="mai-chatbubbles-outline"></span>
                         </div>
-                        <p><span><a href="chat.php">Chat with a doctor</a></span> </p>
+                        <a href="{{ route('chat') }}">Chat with a doctor</a>
 
                     </div>
                 </div>

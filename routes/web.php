@@ -34,7 +34,4 @@ Route::get('/doctors', [HomeController::class, 'doctorPage'])->name('show.doctor
 Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('show.about-us');
 Route::get('/blogs', [HomeController::class, 'blog'])->name('show.blog');
 Route::get('/contact', [HomeController::class, 'contact'])->name('show.contact');
-Route::get('/chat', function () {
-    return view('chat');
-})->name('chat');
-
+Route::view('/chat', 'chat')->name('chat');
