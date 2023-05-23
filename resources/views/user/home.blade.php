@@ -92,7 +92,7 @@
                         <div class="circle-shape bg-primary text-white">
                             <span class="mai-shield-checkmark"></span>
                         </div>
-                        <p><span>One</span>-Health Protection</p>
+                        <a href="{{ route('protection') }}">One-Health Protection</a>
                     </div>
                 </div>
                 <div class="col-md-4 py-3 py-md-0">
@@ -100,7 +100,7 @@
                         <div class="circle-shape bg-accent text-white">
                             <span class="mai-basket"></span>
                         </div>
-                        <p><span>One</span>-Health Pharmacy</p>
+                        <a href="{{ route('pharmacy') }}">One-Health Protection</a>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-        <title>Send Message to Doctors</title>
+        <title>Health Protection Guide</title>
         <link rel="stylesheet" href="./assets/css/maicons.css">
 
         <link rel="stylesheet" href="./assets/css/bootstrap.css">
@@ -12,24 +12,25 @@
         <link rel="stylesheet" href="./assets/vendor/animate/animate.css">
 
         <link rel="stylesheet" href="./assets/css/theme.css">
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            margin: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        p {
+            text-indent: 20px;
+        }
+    </style>
 </head>
 
 <body>
-        
-        <h1>Send Message to Doctors</h1>
-
-        <form action="/send-message" method="POST">
-                <label for="name">Your Name:</label>
-                <input type="text" name="name" id="name" required><br><br>
-
-                <label for="email">Your Email:</label>
-                <input type="email" name="email" id="email" required><br><br>
-
-                <label for="message">Message:</label><br>
-                <textarea name="message" id="message" rows="5" required></textarea><br><br>
-
-                <button type="submit">Send Message</button>
-        </form>
+        <h1>Health Protection Guide</h1>
         <script src="./assets/js/jquery-3.5.1.min.js"></script>
 
         <script src="./assets/js/bootstrap.bundle.min.js"></script>

@@ -35,3 +35,5 @@ Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('show.about-us
 Route::get('/blogs', [HomeController::class, 'blog'])->name('show.blog');
 Route::get('/contact', [HomeController::class, 'contact'])->name('show.contact');
 Route::view('/chat', 'chat')->name('chat');
+Route::view('/protection', 'protection')->name('protection');
+Route::view('/pharmacy', 'pharmacy')->name('pharmacy');
