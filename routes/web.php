@@ -41,3 +41,4 @@ Route::view('/career', 'career')->name('career');
 Route::view('/team', 'team')->name('team');
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/privacy', 'privacy')->name('privacy');
+Route::view('/doc', 'doc')->name('doc');

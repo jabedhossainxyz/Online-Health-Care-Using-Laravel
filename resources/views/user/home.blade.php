@@ -174,8 +174,8 @@
                 <ul class="footer-menu">
                     <li><a href="{{ route('terms') }}">Terms & Condition</a></li>
                     <li><a href="{{ route('privacy') }}">Privacy</a></li>
-                    <li><a href="#">Advertise</a></li>
-                    <li><a href="#">Join as Doctors</a></li>
+                    <li><a href="https://ads.google.com/">Advertise</a></li>
+                    <li><a href="{{ route('doc') }}">Join as a Doctor</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-lg-3 py-3">
