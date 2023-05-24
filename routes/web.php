@@ -29,9 +29,12 @@ Route::get('/show_doctor', [AdminController::class, 'showDoctor']);
 Route::get('/delete_doctor/{id}', [AdminController::class, 'deleteDoctor']);
 Route::get('/update_doctor/{id}', [AdminController::class, 'updateDoctor']);
 Route::post('/edit_doctor/{id}', [AdminController::class, 'editDoctor']);
-Route::get('/admin/news/{id}/edit', [AdminController::class, 'editNews'])->name('admin.editNews');
-Route::post('/admin/news/{id}/update', [AdminController::class, 'updateNews'])->name('admin.updateNews');
-
+Route::get('/show_news', [AdminController::class, 'showNews']);
+Route::get('/delete_news/{id}', [AdminController::class, 'deleteNews']);
+Route::get('/update_news/{id}', [AdminController::class, 'updateNews']);
+Route::post('/edit_news/{id}', [AdminController::class, 'editNews']);
+Route::get('/show_news', [AdminController::class, 'showNews'])->name('admin.showNews');
+Route::post('/store_news', [AdminController::class, 'storeNews'])->name('admin.storeNews');
 
 Route::get('/doctors', [HomeController::class, 'doctorPage'])->name('show.doctor');
 Route::get('/about-us', [HomeController::class, 'About_us'])->name('show.about-us');

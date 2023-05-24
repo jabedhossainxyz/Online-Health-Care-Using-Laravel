@@ -8,6 +8,8 @@ use App\Models\Appointment;
 use function Symfony\Component\Console\Helper\resetIOCodepage;
 use App\Models\News;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 
 class AdminController extends Controller
 {
@@ -97,29 +99,25 @@ class AdminController extends Controller
         $doctor->save();
         return redirect()->back()->with('message', 'Updated successfully');
     }
-
-    public function updateNews(Request $request, $id)
+    public function showNews()
     {
-        $news = News::find($id);
-
-        $news->title = $request->title;
-        $news->content = $request->content;
-        // Add any other fields you want to update
-
-        $news->save();
-
-        return redirect()->back()->with('message', 'News updated successfully');
+        $data = News::all();
+        return view('admin.show_news', compact('data'));
     }
 
-    public function show_news()
+    public function storeNews(Request $request)
     {
-        $newsList = News::all();
-        return view('admin.news_list', compact('newsList'));
-    }
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'category' => 'required',
+            'image' => 'required|image',
+            'author_name' => 'required',
+            'author_image' => 'required|image',
+            'content' => 'required',
+        ]);
 
-    public function editNews($id)
-    {
-        $news = News::find($id);
-        return view('admin.edit_news', compact('news'));
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
     }
 }
