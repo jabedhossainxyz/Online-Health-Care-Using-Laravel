@@ -99,10 +99,65 @@ class AdminController extends Controller
         $doctor->save();
         return redirect()->back()->with('message', 'Updated successfully');
     }
+
     public function showNews()
     {
         $data = News::all();
         return view('admin.show_news', compact('data'));
+    }
+
+    public function delete_news($id)
+    {
+        $news = News::find($id);
+        $news->delete();
+
+        return redirect()->back();
+    }
+
+    public function update_news($id)
+    {
+        $data = News::find($id);
+        return view('admin.update_news', compact('data'));
+    }
+
+    public function edit_news(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'category' => 'required',
+            'content' => 'required',
+            'image' => 'nullable|image',
+            'author_name' => 'required',
+            'author_image' => 'nullable|image',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $news = News::find($id);
+        $news->title = $request->title;
+        $news->category = $request->category;
+        $news->content = $request->content;
+        $news->author_name = $request->author_name;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('newsImage', $imageName);
+            $news->image = $imageName;
+        }
+
+        if ($request->hasFile('author_image')) {
+            $authorImage = $request->file('author_image');
+            $authorImageName = time() . '.' . $authorImage->getClientOriginalExtension();
+            $authorImage->move('authorImage', $authorImageName);
+            $news->author_image = $authorImageName;
+        }
+
+        $news->save();
+
+        return redirect()->back()->with('message', 'News updated successfully');
     }
 
     public function storeNews(Request $request)
@@ -110,14 +165,33 @@ class AdminController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'category' => 'required',
+            'content' => 'required',
             'image' => 'required|image',
             'author_name' => 'required',
             'author_image' => 'required|image',
-            'content' => 'required',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move('newsImage', $imageName);
+
+        $authorImage = $request->file('author_image');
+        $authorImageName = time() . '.' . $authorImage->getClientOriginalExtension();
+        $authorImage->move('authorImage', $authorImageName);
+
+        $news = new News;
+        $news->title = $request->title;
+        $news->category = $request->category;
+        $news->content = $request->content;
+        $news->image = $imageName;
+        $news->author_name = $request->author_name;
+        $news->author_image = $authorImageName;
+        $news->save();
+
+        return redirect()->back()->with('message', 'News added successfully');
     }
 }

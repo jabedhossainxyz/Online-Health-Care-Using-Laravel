@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@extends('admin.admin')
 
 @section('content')
     <div class="page-section bg-light">
@@ -72,4 +73,6 @@
                     </form>
                 </div>
             </div>
-       
+        </div>
+    </div>
+@endsection
