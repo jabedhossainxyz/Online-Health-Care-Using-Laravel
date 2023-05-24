@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\Appointment;
 use function Symfony\Component\Console\Helper\resetIOCodepage;
+use App\Models\News;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
@@ -20,7 +22,7 @@ class AdminController extends Controller
         $doctor = new doctor;
         $image = $request->file;
 
-        $imageName = time().'.'.$image->getClientOriginalExtension();
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
         $request->file->move('doctorImage', $imageName);
         $doctor->image = $imageName;
 
@@ -32,7 +34,6 @@ class AdminController extends Controller
         $doctor->save();
 
         return redirect()->back()->with('message', 'Doctor added successfully');
-
     }
 
     public function show_appointment()
@@ -44,7 +45,7 @@ class AdminController extends Controller
     public function approved($id)
     {
         $data = Appointment::find($id);
-        $data->status ='approved';
+        $data->status = 'approved';
         $data->save();
         return redirect()->back();
     }
@@ -57,7 +58,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function show_doctor()
+    public function showDoctor()
     {
         $data = Doctor::all();
         return view('admin.show_doctor', compact('data'));
@@ -76,7 +77,8 @@ class AdminController extends Controller
         return view('admin.update_doctor', compact('data'));
     }
 
-    public function edit_doctor(Request $request, $id){
+    public function edit_doctor(Request $request, $id)
+    {
         $doctor = Doctor::find($id);
 
         $doctor->name = $request->name;
@@ -85,9 +87,8 @@ class AdminController extends Controller
         $doctor->room = $request->room;
 
         $image = $request->file;
-        if($image)
-        {
-            $imageName = time().'.'.$image->getClientOriginalExtension();
+        if ($image) {
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
             $request->file->move('doctorImage', $imageName);
             $doctor->image = $imageName;
         }
@@ -95,7 +96,30 @@ class AdminController extends Controller
 
         $doctor->save();
         return redirect()->back()->with('message', 'Updated successfully');
-
     }
 
+    public function updateNews(Request $request, $id)
+    {
+        $news = News::find($id);
+
+        $news->title = $request->title;
+        $news->content = $request->content;
+        // Add any other fields you want to update
+
+        $news->save();
+
+        return redirect()->back()->with('message', 'News updated successfully');
+    }
+
+    public function show_news()
+    {
+        $newsList = News::all();
+        return view('admin.news_list', compact('newsList'));
+    }
+
+    public function editNews($id)
+    {
+        $news = News::find($id);
+        return view('admin.edit_news', compact('news'));
+    }
 }
