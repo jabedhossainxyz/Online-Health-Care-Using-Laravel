@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { useForm } from '@inertiajs/inertia-vue3';
+import { useForm } from '@inertiajs/vue3';
 import ActionSection from '@/Components/ActionSection.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
@@ -74,6 +74,7 @@ const closeModal = () => {
                             type="password"
                             class="mt-1 block w-3/4"
                             placeholder="Password"
+                            autocomplete="current-password"
                             @keyup.enter="deleteUser"
                         />
 

@@ -3,6 +3,7 @@
 namespace Illuminate\Support;
 
 use Closure;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
@@ -56,7 +57,7 @@ class Stringable implements JsonSerializable
     /**
      * Append the given values to the string.
      *
-     * @param  array  $values
+     * @param  string  ...$values
      * @return static
      */
     public function append(...$values)
@@ -167,22 +168,24 @@ class Stringable implements JsonSerializable
      * Determine if a given string contains a given substring.
      *
      * @param  string|iterable<string>  $needles
+     * @param  bool  $ignoreCase
      * @return bool
      */
-    public function contains($needles)
+    public function contains($needles, $ignoreCase = false)
     {
-        return Str::contains($this->value, $needles);
+        return Str::contains($this->value, $needles, $ignoreCase);
     }
 
     /**
      * Determine if a given string contains all array values.
      *
      * @param  iterable<string>  $needles
+     * @param  bool  $ignoreCase
      * @return bool
      */
-    public function containsAll($needles)
+    public function containsAll($needles, $ignoreCase = false)
     {
-        return Str::containsAll($this->value, $needles);
+        return Str::containsAll($this->value, $needles, $ignoreCase);
     }
 
     /**
@@ -318,6 +321,16 @@ class Stringable implements JsonSerializable
     }
 
     /**
+     * Determine if a given string is a valid ULID.
+     *
+     * @return bool
+     */
+    public function isUlid()
+    {
+        return Str::isUlid($this->value);
+    }
+
+    /**
      * Determine if the given string is empty.
      *
      * @return bool
@@ -350,7 +363,7 @@ class Stringable implements JsonSerializable
     /**
      * Return the length of the given string.
      *
-     * @param  string  $encoding
+     * @param  string|null  $encoding
      * @return int
      */
     public function length($encoding = null)
@@ -489,7 +502,7 @@ class Stringable implements JsonSerializable
      * Parse a Class@method style callback into class and method.
      *
      * @param  string|null  $default
-     * @return array
+     * @return array<int, string|null>
      */
     public function parseCallback($default = null)
     {
@@ -510,7 +523,7 @@ class Stringable implements JsonSerializable
     /**
      * Get the plural form of an English word.
      *
-     * @param  int  $count
+     * @param  int|array|\Countable  $count
      * @return static
      */
     public function plural($count = 2)
@@ -521,7 +534,7 @@ class Stringable implements JsonSerializable
     /**
      * Pluralize the last word of an English, studly caps case string.
      *
-     * @param  int  $count
+     * @param  int|array|\Countable  $count
      * @return static
      */
     public function pluralStudly($count = 2)
@@ -532,7 +545,7 @@ class Stringable implements JsonSerializable
     /**
      * Prepend the given values to the string.
      *
-     * @param  array  $values
+     * @param  string  ...$values
      * @return static
      */
     public function prepend(...$values)
@@ -543,7 +556,7 @@ class Stringable implements JsonSerializable
     /**
      * Remove any occurrence of the given string in the subject.
      *
-     * @param  string|array<string>  $search
+     * @param  string|iterable<string>  $search
      * @param  bool  $caseSensitive
      * @return static
      */
@@ -726,11 +739,12 @@ class Stringable implements JsonSerializable
      *
      * @param  string  $separator
      * @param  string|null  $language
+     * @param  array<string, string>  $dictionary
      * @return static
      */
-    public function slug($separator = '-', $language = 'en')
+    public function slug($separator = '-', $language = 'en', $dictionary = ['@' => 'at'])
     {
-        return new static(Str::slug($this->value, $separator, $language));
+        return new static(Str::slug($this->value, $separator, $language, $dictionary));
     }
 
     /**
@@ -770,24 +784,25 @@ class Stringable implements JsonSerializable
      *
      * @param  int  $start
      * @param  int|null  $length
+     * @param  string  $encoding
      * @return static
      */
-    public function substr($start, $length = null)
+    public function substr($start, $length = null, $encoding = 'UTF-8')
     {
-        return new static(Str::substr($this->value, $start, $length));
+        return new static(Str::substr($this->value, $start, $length, $encoding));
     }
 
     /**
      * Returns the number of substring occurrences.
      *
      * @param  string  $needle
-     * @param  int|null  $offset
+     * @param  int  $offset
      * @param  int|null  $length
      * @return int
      */
-    public function substrCount($needle, $offset = null, $length = null)
+    public function substrCount($needle, $offset = 0, $length = null)
     {
-        return Str::substrCount($this->value, $needle, $offset ?? 0, $length);
+        return Str::substrCount($this->value, $needle, $offset, $length);
     }
 
     /**
@@ -1004,6 +1019,18 @@ class Stringable implements JsonSerializable
     }
 
     /**
+     * Execute the given callback if the string is a valid ULID.
+     *
+     * @param  callable  $callback
+     * @param  callable|null  $default
+     * @return static
+     */
+    public function whenIsUlid($callback, $default = null)
+    {
+        return $this->when($this->isUlid(), $callback, $default);
+    }
+
+    /**
      * Execute the given callback if the string starts with a given substring.
      *
      * @param  string|iterable<string>  $needles
@@ -1044,11 +1071,12 @@ class Stringable implements JsonSerializable
     /**
      * Get the number of words a string contains.
      *
+     * @param  string|null  $characters
      * @return int
      */
-    public function wordCount()
+    public function wordCount($characters = null)
     {
-        return str_word_count($this->value);
+        return Str::wordCount($this->value, $characters);
     }
 
     /**
@@ -1060,7 +1088,7 @@ class Stringable implements JsonSerializable
      */
     public function wrap($before, $after = null)
     {
-        return new static($before.$this->value.($after ??= $before));
+        return new static(Str::wrap($this->value, $before, $after));
     }
 
     /**
@@ -1115,6 +1143,56 @@ class Stringable implements JsonSerializable
     public function toString()
     {
         return $this->value;
+    }
+
+    /**
+     * Get the underlying string value as an integer.
+     *
+     * @return int
+     */
+    public function toInteger()
+    {
+        return intval($this->value);
+    }
+
+    /**
+     * Get the underlying string value as a float.
+     *
+     * @return float
+     */
+    public function toFloat()
+    {
+        return floatval($this->value);
+    }
+
+    /**
+     * Get the underlying string value as a boolean.
+     *
+     * Returns true when value is "1", "true", "on", and "yes". Otherwise, returns false.
+     *
+     * @return bool
+     */
+    public function toBoolean()
+    {
+        return filter_var($this->value, FILTER_VALIDATE_BOOLEAN);
+    }
+
+    /**
+     * Get the underlying string value as a Carbon instance.
+     *
+     * @param  string|null  $format
+     * @param  string|null  $tz
+     * @return \Illuminate\Support\Carbon
+     *
+     * @throws \Carbon\Exceptions\InvalidFormatException
+     */
+    public function toDate($format = null, $tz = null)
+    {
+        if (is_null($format)) {
+            return Date::parse($this->value, $tz);
+        }
+
+        return Date::createFromFormat($format, $this->value, $tz);
     }
 
     /**
