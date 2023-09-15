@@ -55,9 +55,6 @@ final class EnglishInflector implements InflectorInterface
         // indices (index), appendices (appendix), prices (price)
         ['seci', 4, false, true, ['ex', 'ix', 'ice']],
 
-        // codes (code)
-        ['sedoc', 5, false, true, 'code'],
-
         // selfies (selfie)
         ['seifles', 7, true, true, 'selfie'],
 
@@ -66,9 +63,6 @@ final class EnglishInflector implements InflectorInterface
 
         // movies (movie)
         ['seivom', 6, true, true, 'movie'],
-
-        // names (name)
-        ['seman', 5, true, false, 'name'],
 
         // conspectuses (conspectus), prospectuses (prospectus)
         ['sesutcep', 8, true, true, 'pectus'],
@@ -93,9 +87,6 @@ final class EnglishInflector implements InflectorInterface
 
         // accesses (access), addresses (address), kisses (kiss)
         ['sess', 4, true, false, 'ss'],
-
-        // statuses (status)
-        ['sesutats', 8, true, true, 'status'],
 
         // analyses (analysis), ellipses (ellipsis), fungi (fungus),
         // neuroses (neurosis), theses (thesis), emphases (emphasis),
@@ -140,9 +131,6 @@ final class EnglishInflector implements InflectorInterface
         // waltzes (waltz), heroes (hero), bushes (bush), arches (arch),
         // shoes (shoe)
         ['se', 2, true, true, ['', 'e']],
-
-         // status (status)
-        ['sutats', 6, true, true, 'status'],
 
         // tags (tag)
         ['s', 1, true, true, ''],
@@ -285,9 +273,6 @@ final class EnglishInflector implements InflectorInterface
         // circuses (circus)
         ['suc', 3, true, true, 'cuses'],
 
-        // status (status)
-        ['sutats', 6, true, true, ['status', 'statuses']],
-
         // conspectuses (conspectus), prospectuses (prospectus)
         ['sutcep', 6, true, true, 'pectuses'],
 
@@ -365,6 +350,9 @@ final class EnglishInflector implements InflectorInterface
         'seiceps',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
     public function singularize(string $plural): array
     {
         $pluralRev = strrev($plural);
@@ -396,7 +384,7 @@ final class EnglishInflector implements InflectorInterface
                 if ($j === $suffixLength) {
                     // Is there any character preceding the suffix in the plural string?
                     if ($j < $pluralLength) {
-                        $nextIsVocal = str_contains('aeiou', $lowerPluralRev[$j]);
+                        $nextIsVocal = false !== strpos('aeiou', $lowerPluralRev[$j]);
 
                         if (!$map[2] && $nextIsVocal) {
                             // suffix may not succeed a vocal but next char is one
@@ -441,6 +429,9 @@ final class EnglishInflector implements InflectorInterface
         return [$plural];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function pluralize(string $singular): array
     {
         $singularRev = strrev($singular);
@@ -473,7 +464,7 @@ final class EnglishInflector implements InflectorInterface
                 if ($j === $suffixLength) {
                     // Is there any character preceding the suffix in the plural string?
                     if ($j < $singularLength) {
-                        $nextIsVocal = str_contains('aeiou', $lowerSingularRev[$j]);
+                        $nextIsVocal = false !== strpos('aeiou', $lowerSingularRev[$j]);
 
                         if (!$map[2] && $nextIsVocal) {
                             // suffix may not succeed a vocal but next char is one
