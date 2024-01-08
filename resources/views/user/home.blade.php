@@ -118,11 +118,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 py-3 wow fadeInUp">
                         <h1>Welcome to Your Health Center</h1>
-                        <p class="text-grey mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-                            vero eos et accusam et justo duo dolores et ea rebum. Accusantium aperiam earum ipsa eius,
-                            inventore nemo labore eaque porro consequatur ex aspernatur. Explicabo, excepturi
-                            accusantium! Placeat voluptates esse ut optio facilis!</p>
+                        <p class="text-grey mb-4">Online healthcare revolutionizes access, connecting patients and providers worldwide. Through telemedicine and digital platforms, it ensures convenient consultations, prescription management, and continuous care. Wearable tech enhances monitoring. Challenges include data security and regulatory needs, yet it promises efficient, patient-focused services.</p>
                         <a href="{{ route('show.about-us') }}" class="btn btn-primary">Learn More</a>
                     </div>
                     <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
