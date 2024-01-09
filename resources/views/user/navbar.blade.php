@@ -19,21 +19,26 @@
 
         <div class="collapse navbar-collapse" id="navbarSupport">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                {{-- <li class="nav-item active">
                     <a class="nav-link" href="{{ asset('/') }}">Home</a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('show.about-us') }}">About Us</a>
-                </li>
+                </li> --}}
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('show.doctor') }}">Doctors</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('show.blog') }}">News</a>
+                    <a class="nav-link" href="{{ route('show.about-us') }}">About Us</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('show.contact') }}">Contact</a>
                 </li>
+
+                
                 @if (Route::has('login'))
                     @auth
                         <li class="nav-item">
